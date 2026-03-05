@@ -1,0 +1,35 @@
+# Nginx Configuration Example for D2 MCP
+
+server {
+    listen 443 ssl;
+    listen 8443 ssl;
+    server_name your-domain.com;  # CHANGE THIS
+
+    # SSL Configuration
+    ssl_certificate /path/to/ssl/fullchain.pem;      # CHANGE THIS
+    ssl_certificate_key /path/to/ssl/privkey.pem;   # CHANGE THIS
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    client_max_body_size 100M;
+
+    # D2 Diagrams Static Files
+    location /diagrams/ {
+        alias /path/to/your/diagrams/;  # CHANGE THIS
+        expires 7d;
+        add_header Cache-Control "public";
+        add_header Access-Control-Allow-Origin "*";
+    }
+
+    # LobeHub Proxy (if needed)
+    location / {
+        proxy_pass http://localhost:3210;  # CHANGE PORT if needed
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}

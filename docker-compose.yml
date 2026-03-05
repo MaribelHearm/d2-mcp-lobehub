@@ -1,0 +1,11 @@
+services:
+  mcp-d2:
+    build:
+      context: ./mcp-d2
+      dockerfile: Dockerfile
+    container_name: mcp-d2
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      # CHANGE THIS PATH to your actual diagrams directory
+      - /path/to/your/diagrams:/diagrams
