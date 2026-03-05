@@ -1,10 +1,12 @@
 # D2 Diagram Integration for LobeHub
+
 ![GitHub stars](https://img.shields.io/github/stars/MaribelHearm/d2-mcp-lobehub?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/MaribelHearm/d2-mcp-lobehub?style=social)
+
+---
 [English](#english) | [中文](#中文)
 
 ---
-
 ## English
 
 ### 🎯 Overview
